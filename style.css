@@ -1733,12 +1733,6 @@ mask-image: linear-gradient(135deg, #159faa 0%, #159faa 40%, transparent 60%, tr
   transform: scale(0.8);
 }
 
-/* When popup becomes visible */
-.message-popup.show .message-box {
-  animation: popupEnter 0.6s ease forwards,
-             glowPulse 2s infinite ease-in-out;
-}
-
 .message-box button {
   margin-top: 2vmin;
   padding: 1vmin 2vmin;
@@ -1754,24 +1748,6 @@ mask-image: linear-gradient(135deg, #159faa 0%, #159faa 40%, transparent 60%, tr
 .message-box button:hover {
   background: #f72585;
 }
-/* Pop + shake animation */
-@keyframes popupEnter {
-  0% {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-  60% {
-    transform: scale(1.05);
-    opacity: 1;
-  }
-  75% { transform: scale(0.98) translateX(-4px); }
-  80% { transform: scale(1.02) translateX(4px); }
-  85% { transform: scale(1) translateX(-3px); }
-  90% { transform: scale(1) translateX(3px); }
-  100% {
-    transform: scale(1) translateX(0);
-  }
-}
 
 /* Glow pulse */
 @keyframes glowPulse {
@@ -1779,25 +1755,28 @@ mask-image: linear-gradient(135deg, #159faa 0%, #159faa 40%, transparent 60%, tr
   50% { box-shadow: 0 0 5vmin rgba(247, 37, 133, 0.9); }
   100% { box-shadow: 0 0 2vmin rgba(183, 23, 158, 0.6); }
 }
-
-@keyframes attentionShake {
+/* Shake animation */
+@keyframes shakeAttention {
   0% { transform: translateX(0); }
-  10% { transform: translateX(-6px); }
-  20% { transform: translateX(6px); }
-  30% { transform: translateX(-5px); }
-  40% { transform: translateX(5px); }
-  50% { transform: translateX(-3px); }
-  60% { transform: translateX(3px); }
-  70% { transform: translateX(-2px); }
-  80% { transform: translateX(2px); }
-  90% { transform: translateX(-1px); }
+  15% { transform: translateX(-4px); }
+  30% { transform: translateX(4px); }
+  45% { transform: translateX(-4px); }
+  60% { transform: translateX(4px); }
+  75% { transform: translateX(-2px); }
   100% { transform: translateX(0); }
 }
 
-/* Make it shake repeatedly */
-.message-popup.auto-show .message-box {
-  animation: attentionShake 0.6s ease-in-out infinite;
+/* Apply only to the Click Me button */
+.note {
+  cursor: pointer;
+  animation: shakeAttention 1.2s ease-in-out infinite;
 }
+
+/* Optional: stronger effect when hovering */
+.note:hover {
+  animation: shakeAttention 0.6s ease-in-out infinite;
+}
+
 
 .fireflies {
   position: fixed;
