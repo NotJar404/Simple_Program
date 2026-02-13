@@ -1,26 +1,41 @@
 onload = () => {
   document.body.classList.remove("container");
+
+  const popup = document.getElementById("popup");
+
+  // Show popup automatically
+  popup.style.display = "flex";
+
+  // Small delay so animation triggers properly
+  setTimeout(() => {
+    popup.classList.add("auto-show");
+  }, 100);
 };
 
 function showMessage() {
   const popup = document.getElementById("popup");
   popup.style.display = "flex";
-  
-  // Trigger animation
+
   setTimeout(() => {
-    popup.classList.add("show");
+    popup.classList.add("auto-show");
   }, 10);
 }
 
 function closeMessage() {
   const popup = document.getElementById("popup");
-  popup.classList.remove("show");
+
+  // Stop shaking
+  popup.classList.remove("auto-show");
+
   popup.style.display = "none";
 }
 
-const container = document.querySelector(".fireflies");
+/* =========================
+   FIRELIES GENERATOR
+========================= */
 
-const numberOfFireflies = 70; // Increase this if you want even more
+const container = document.querySelector(".fireflies");
+const numberOfFireflies = 70;
 
 for (let i = 0; i < numberOfFireflies; i++) {
   const firefly = document.createElement("div");
